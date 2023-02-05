@@ -1,0 +1,58 @@
+﻿@model PMISBLayer.Entities.ProjectPhase
+@using PMISBLayer.Entities
+@{
+    ViewData["Title"] = "NewPhase";
+    var pPhase = (List<ProjectPhase>)ViewBag.pPhase;
+    var proj = (Project)ViewBag.project;
+}
+
+<h1>NewPhase</h1>
+
+<h4>ProjectPhase</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateProjectPhase">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden name="ProjectId" value="@proj.ProjectId"/>
+            @*<input hidden asp-for="ProjectPhaseId"/>*@
+            <div class="form-group">
+                <label asp-for="PhaseId" class="control-label"></label>
+                <select asp-for="PhaseId" class="form-control">
+                    @foreach (var item in @ViewBag.phases)
+                    {
+                        
+                            if (pPhase.Select(x => x.PhaseId).ToList().Contains(item.PhaseId))
+                            //if (((List<int>)ViewBag.stuCourses).Contains(c.CourseId))
+                            {
+                                <option selected="selected" value="@item.PhaseId">@item.PhaseName</option>
+
+                            }
+                            <option value="@item.PhaseId">@item.PhaseName</option>
+                        }
+                    </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StratDate" class="control-label"></label>
+                <input asp-for="StratDate" class="form-control" />
+                <span asp-validation-for="StratDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

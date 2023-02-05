@@ -1,0 +1,39 @@
+﻿
+@using PMISAppLayer.DTO @*//NameofProject.NameOfFolder*@
+@using PMISBLayer.Entities
+
+@model CreateMessageDTO
+
+
+
+<form asp-controller="home" asp-action="Createmessage" method="post">
+    @Html.HiddenFor(x => x.MessageId)
+    <div class="form-group">
+        <label>Enter Your Name</label>
+
+        <input class="form-control" asp-for="MessageName" />
+    </div>
+    <div class="form-group">
+        <label> Enter Your mail Or Phone </label>
+
+        <input class="form-control" asp-for="MessageContact" />
+    </div>
+    <div class="form-group">
+        <label> Enter Message</label>
+
+        <input class="form-control" asp-for="MessageDescription" />
+    </div>
+
+    <br />
+    <input type="submit" class="btn btn-outline-success" value="Submit" />
+</form>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+﻿@using PMISBLayer.Entities
+
+<a class="btn btn-outline-info btn-lg btn-block " href="/Phase/Index"> Phases </a>
+<a class="btn btn-outline-secondary btn-lg btn-block " href="/Project/Index"> Projects </a>
+<a class="btn btn-outline-secondary btn-lg btn-block " href="/PaymentTerm/Index"> Payment Term</a>
+<a class="btn btn-outline-dark btn-lg btn-block " href="/Home/Index"> Messages </a>
+<br />
+
+<table class="table table-dark table-hover" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Deliverable Id
+            </th>
+            <th>
+                Deliverable Description
+            </th>
+            <th>
+                Phase Name
+            </th>
+            <th>
+                Deliverable Start Date
+            </th>
+            <th>
+                Deliverable End Date
+            </th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var p in (List<Deliverable>)ViewBag.Deliverable)
+        {
+            <tr>
+                <td>@p.DeliverableId</td>
+                <td>@p.DeliverableDescription</td>
+                <td>@p.ProjectPhase.Phase.PhaseName</td>
+                <td>@p.StartDate</td>
+                <td>@p.EndtDate</td>
+                <td><a class="btn btn-outline-warning" href="/Deliverable/UpdateDeliverable?id=@p.DeliverableId">Edit</a></td>
+                <td><a class="btn btn-outline-danger" href="/Deliverable/DeleteDeliverable?id=@p.DeliverableId">Delete</a></td>
+                <td><a class="btn btn-outline-light text-lg-center" href="/PaymentTerm/NewPaymentTerm?id=@p.DeliverableId">Payment Terms</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        })
+    </script>
+}

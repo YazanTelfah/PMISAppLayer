@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PMISBLayer.Entities.ProjectPhase>
+@using PMISBLayer.Entities
+@{
+    ViewData["Title"] = "Index";
+    var proj = (Project)ViewBag.project;
+}
+<a class="btn btn-outline-info btn-lg btn-block " href="/Phase/Index"> Phases </a>
+<a class="btn btn-outline-info btn-lg btn-block " href="/Project/Index"> Projects </a>
+<a class="btn btn-outline-secondary btn-lg btn-block " href="/Deliverable/Index"> Deliverables </a>
+<a class="btn btn-outline-dark btn-lg btn-block " href="/Home/Index"> Messages </a>
+<br />
+
+<table class="table table-dark table-hover" >
+    <thead>
+        <tr>
+            <th>
+                Project
+            </th>
+            <th>
+                Phase
+            </th>
+            <th>
+                PhaseId
+            </th>
+            <th>
+                StratDate
+            </th>
+            <th>
+                EndDate
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase.PhaseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase.PhaseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StratDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                <a class="btn btn-outline-light text-lg-center" asp-action="NewDeliverable" asp-controller="Deliverable" asp-route-id="@item.ProjectPhaseId">Deliverable</a> |
+                <a class="btn btn-outline-warning" asp-action="UpdatePhase" asp-route-id="@item.ProjectPhaseId">Edit</a> |
+                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.ProjectPhaseId">Delete</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

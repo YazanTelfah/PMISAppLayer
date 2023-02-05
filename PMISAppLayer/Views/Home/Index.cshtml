@@ -1,0 +1,102 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    @using PMISBLayer.Entities
+    <a class="btn btn-outline-primary btn-lg btn-block" href="/Project/Index"> Projects </a>
+    <a class="btn btn-outline-info btn-lg btn-block " href="/Phase/Index"> Phases </a>
+    <a class="btn btn-outline-secondary btn-lg btn-block " href="/Deliverable/Index"> Deliverables </a>
+    <a class="btn btn-outline-dark btn-lg btn-block " href="/PaymentTerm/Index"> Payment Term </a>
+    <br />
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Costumer Name
+                </th>
+                <th>
+                    Costumer Contact
+                </th>
+                <th>
+                    Message Id
+                </th>
+                <th>
+                    Message Descreption
+                </th>
+
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var M in (List<Message>)ViewBag.Messages)
+            {
+                <tr>
+                    <td>@M.MessageName</td>
+                    <td>@M.MessageContact</td>
+                    <td>@M.MessageId</td>
+                    <td>@M.MessageDescription</td>
+
+                    <td><a class="btn btn-outline-danger" href="/Home/DeleteMessage?messageid=@M.MessageId">Delete</a></td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else
+{
+
+    <h1 id="logo">Dar-Al Handasah</h1>
+
+    <video autoplay muted loop id="Vid">
+        <source src="~/Video/indexVID.mp4" type="video/mp4">
+    </video>
+
+    <div id="contaner">
+
+        <div class="text">
+            Welcome Manager
+            <br>
+            To Log in or Register
+            <br>
+
+        </div>
+
+
+        <a href="/Identity/Account/Register" id="botton">Register </a>
+        <a href="/Identity/Account/Login" id="botton">LogIN </a>
+    </div>
+
+    <div class="foteer">
+
+        <div id="foteerDivs">
+            <h3>
+                About Dar:
+            </h3>
+            <p>
+                Dar is one of the world’s leading consultancies, providing design, planning,
+                and engineering services for a wide variety of market sectors, including buildings and cities,
+                transportation and civil infrastructure, water and the environment, and project management..
+                <br>
+                A signatory to the World Green Building Council’s Net Zero Carbon Buildings Commitment,
+                Dar promotes low embodied carbon approaches and net zero carbon pathways in its projects
+                – which range from setting national master plans to designing new infrastructure and repurposing existing buildings.
+            </p>
+        </div>
+
+        <div id="foteerDivs">
+            <h3> Conact Us  </h3>
+<pre>&#128222; : +962 796 819 52</pre>
+
+<pre><i class="fa fa-whatsapp"></i> : +962 770 256 954</pre>
+
+<pre>&#9742;&#65039; : (02)874526      </pre>
+
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,74 @@
+﻿
+@using PMISAppLayer.DTO @*//NameofProject.NameOfFolder*@
+@using PMISBLayer.Entities
+
+@model Deliverable
+
+
+@{
+
+    var dev = (Deliverable)ViewBag.deliverable;
+}
+<script>
+  $( function() {
+      $("#StartDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+      $("#EndDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+  } );
+</script>
+
+<form asp-action="Edit">
+    @*@Html.HiddenFor(x => x.pr)*@
+    <input hidden asp-for="ProjectPhaseId" />
+     <input hidden asp-for="DeliverableId" />
+     <input hidden asp-for="ProjectPhase.ProjectId" />
+     <input hidden asp-for="ProjectPhase.PhaseId" />
+    <div class="form-group">
+        <label asp-for="ProjectPhase.Project.ProjectName"></label>
+        <input class="form-control" asp-for="ProjectPhase.Project.ProjectName" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="ProjectPhase.StratDate"></label>
+        <input class="form-control" asp-for="ProjectPhase.StratDate" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="ProjectPhase.EndDate"></label>
+        <input class="form-control" asp-for="ProjectPhase.EndDate" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="ProjectPhase.Phase"></label>
+        <input class="form-control" asp-for="ProjectPhase.Phase.PhaseName" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Description of Deliverable</label>
+
+        <input class="form-control" asp-for="DeliverableDescription" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate"> Start Date</label>
+
+        <input  class="form-control" asp-for="StartDate" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndtDate"> End Date</label>
+
+        <input class="form-control" asp-for="EndtDate" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index">Back to List</a>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+

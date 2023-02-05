@@ -1,0 +1,60 @@
+#body{
+padding: 0px;
+margin: 0px;
+}
+
+/*.container{
+    width: 100% !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    max-width: 100%;
+}*/
+
+#logo{
+    position: fixed; top: 2%; 
+    letter-spacing: 30px;
+    color: cornflowerblue;
+    font-size: 70px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0,0,0,0.7);
+}
+
+#Vid{
+width: 100%;
+margin: 0px;
+}
+
+#contaner{
+position: absolute; top: 27%; left: 50%;
+transform: translate(-50%,-50%);
+width: 50%;
+text-align: center;
+}
+
+.text{
+text-align: center;
+border-radius: 30px;
+margin-bottom: 20px;
+font-size: 42px;
+background-color: rgba(0,0,0,0.7);
+color: cornflowerblue;
+padding: 20px;
+}
+
+#botton {
+	background-color: rgba(0,0,0,0.7);
+	color: white;
+	font-size: 25px;
+    padding: 15px 40px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid cornflowerblue;
+    border-radius: 25px;
+    
+}
+
+#botton:hover {
+	color: black;
+	background-color: cornflowerblue;	
+}

@@ -1,0 +1,58 @@
+﻿
+@using PMISAppLayer.DTO.PaymentDTO 
+@using PMISBLayer.Entities
+
+@model InsertPaymentTermDTO
+@{ 
+    var del = (Deliverable)ViewBag.del;
+}
+
+<script>
+  $( function() {
+      $("#StartDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+      $("#EndDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+  } );
+</script>
+
+<form asp-controller="PaymentTerm" asp-action="CreatePaymentTerm" method="post">
+    <input name="DeliverableId" value="@del.DeliverableId" hidden/>
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="@del.StartDate" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="@del.EndtDate" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="@del.ProjectPhase.Phase.PhaseName" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="PaymentTermTitle" />
+    </div>
+    <div class="form-group">
+        <label> Enter Amount  </label>
+        <input class="form-control" asp-for="PaymentTermAmount" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-outline-success" value="Submit" />
+        <a href="/PaymentTerm/Index">Back</a>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+

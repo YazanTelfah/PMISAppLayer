@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PMISBLayer.Entities.Phase>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="color:cornflowerblue">Phases</h1>
+
+<hr />
+<a class="btn btn-outline-secondary btn-lg btn-block " href="/Project/Index"> Projects </a>
+
+<a class="btn btn-outline-dark btn-lg btn-block " href="/Deliverable/Index"> Deliverables </a>
+
+<a class="btn btn-outline-secondary btn-lg btn-block " href="/PaymentTerm/Index"> Payment Term</a>
+
+<a class="btn btn-outline-dark btn-lg btn-block " href="/Home/Index"> Messages </a>
+<hr />
+<p>
+    <a class="btn btn-outline-primary btn-lg btn-block" asp-action="Create">Create New Phase </a>
+</p>
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhaseName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhaseName)
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.PhaseId">Edit</a> |
+
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.PhaseId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

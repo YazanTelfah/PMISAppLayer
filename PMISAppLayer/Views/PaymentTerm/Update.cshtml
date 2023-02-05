@@ -1,0 +1,60 @@
+﻿
+@using PMISAppLayer.DTO
+@using PMISBLayer.Entities
+
+@model UpdatePaymentTermDTO
+@{
+    var pay = (PaymentTerm)ViewBag.pay;
+}
+
+<script>
+  $( function() {
+      $("#StartDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+      $("#EndDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+  } );
+</script>
+
+<form asp-controller="PaymentTerm" asp-action="Edit" method="post">
+    <input type="hidden"  value="@pay.PaymentTermId" name="PaymentTermId" />
+
+    <input type="hidden"  value="@pay.DeliverableId" name="DeliverableId" />
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="@pay.Deliverable.StartDate" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="@pay.Deliverable.EndtDate" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="@pay.Deliverable.ProjectPhase.Phase.PhaseName" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Title of your payment term</label>
+        <input class="form-control" asp-for="PaymentTermTitle" value="@pay.PaymentTermTitle" />
+    </div>
+    <div class="form-group">
+        <label> Enter Amount  </label>
+        <input class="form-control" asp-for="PaymentTermAmount" value="@pay.PaymentTermAmount" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-outline-success" value="Save" />
+        <a href="/PaymentTerm/Index">Back</a>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+

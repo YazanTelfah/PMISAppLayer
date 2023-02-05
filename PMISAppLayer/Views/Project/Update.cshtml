@@ -1,0 +1,101 @@
+﻿@using PMISAppLayer.DTO.ProjectDTO
+@using PMISBLayer.Entities;
+
+@model UpdateProjectDTO
+@{ 
+    var project = (Project)ViewBag.project;
+    var projectstatus = (List<ProjectStatus>)ViewBag.projectStatus;
+    var projectType = (List<ProjectType>)ViewBag.projectType;
+    var phase = (List<Phase>)ViewBag.phase;
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateProject" enctype="multipart/form-data">
+            <input hidden value="@project.ProjectId" name="ProjectId" />
+            <input hidden value="@project.ProjectManagerId" name="ProjectManagerId" />
+
+            <div class="form-group">
+                <label>Enter Name of Project</label>
+
+                <input class="form-control" asp-for="ProjectName" value="@project.ProjectName" />
+            </div>
+            <div class="form-group">
+                <label>select  Type of your Project</label>
+                <select name="ProjectTypeId" class="form-control">
+                    @{
+                        foreach (var pt in projectType)
+                        {
+                            if (pt.ProjectTypeId == project.ProjectTypeId)
+                            {
+                                <option selected value="@project.ProjectTypeId">@pt.ProjectTypeName</option>
+                            }
+                            else
+                            {
+                                <option value="@pt.ProjectTypeId">@pt.ProjectTypeName</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label> Start Date</label>
+
+                <input class="form-control" name="StartDate" value="@project.StratDate" />
+            </div>
+            <div class="form-group">
+                <label> End Date</label>
+
+                <input class="form-control" name="EndDate" value="@project.EndDate" />
+            </div>
+            <div class="form-group">
+                <label>select  Type of your Project</label>
+                <select name="ProjectStatusId" class="form-control">
+                    @{
+                        foreach (var st in projectstatus)
+                        {
+                            if (st.ProjectStatusId == project.ProjectStatusId)
+                            {
+                                <option selected value="@project.ProjectStatusId">@st.ProjectStatusName</option>
+                            }
+                            else
+                            {
+                                <option value="@st.ProjectStatusId">@st.ProjectStatusName</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label> Enter  Contract Amount</label>
+
+                <input class="form-control" asp-for="ContractAmount" value="@project.ContractAmount" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhaseIds" class="control-label">Select Your Phase</label>
+                <select asp-for="PhaseIds" class="form-control" multiple>
+                    @foreach (var item3 in phase)
+                    {
+                        if (project.ProjectPhases.Select(q => q.PhaseId).ToList().Contains(item3.PhaseId))
+                        {
+                            <option selected value="@item3.PhaseId">@item3.PhaseName</option>
+                        }
+                        else
+                        {
+                            <option value="@item3.PhaseId">@item3.PhaseName</option>
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label> Uploud Contract</label>
+
+                <input type="file" class="form-control" name="ContractFile" />
+            </div>
+            <br />
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </form>
+    </div>
+</div>

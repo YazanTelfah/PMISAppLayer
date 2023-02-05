@@ -1,0 +1,54 @@
+﻿@using PMISBLayer.Entities
+
+
+
+
+<a class="btn btn-outline-primary btn-lg btn-block" href="/PaymentTerm/NewPaymentTerm">Create a New Payment Term </a>
+<a class="btn btn-outline-info btn-lg btn-block " href="/Phase/Index"> Phases </a>
+<a class="btn btn-outline-secondary btn-lg btn-block " href="/Project/Index"> Projects </a>
+<a class="btn btn-outline-dark btn-lg btn-block " href="/Home/Index"> Messages </a>
+<a class="btn btn-outline-dark btn-lg btn-block " href="/Deliverable/Index"> Deliverables </a>
+<br />
+
+<table class="table table-dark table-hover" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Payment Term Title
+            </th>
+            <th>
+                Payment Term Amount
+            </th>
+            <th>
+                Payment Term Id
+            </th>
+            <th>
+                Deliverable Descripition
+            </th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var p in (List<PaymentTerm>)ViewBag.PaymentTerm)
+        {
+        <tr>
+            <td>@p.PaymentTermTitle</td>
+            <td>@p.PaymentTermAmount</td>
+            <td>@p.PaymentTermId</td>
+            <td>@p.Deliverable.DeliverableDescription</td>
+            <td><a class="btn btn-outline-warning" href="/PaymentTerm/Update?id=@p.PaymentTermId">Edit</a></td>
+            <td><a class="btn btn-outline-danger" href="/PaymentTerm/DeletePaymentTerm?PaymentTermid=@p.PaymentTermId">Delete</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.6/sb-1.3.3/sp-2.0.1/sl-1.4.0/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        })
+    </script>
+}

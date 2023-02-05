@@ -1,0 +1,72 @@
+﻿
+@using PMISAppLayer.DTO.DelivrableDTO @*//NameofProject.NameOfFolder*@
+@using PMISBLayer.Entities
+
+@model InsertDeliverableDTO
+
+@{ 
+    var project =(Project) ViewBag.project;
+    var projectPhsae =(ProjectPhase) ViewBag.projectPhase ;
+
+}
+<script>
+  $( function() {
+      $("#StartDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+      $("#EndDate").datepicker({
+          altFormat: "yy-mm-dd"
+      });
+  } );
+</script>
+
+<form asp-action="Create">
+    @*@Html.HiddenFor(x => x.pr)*@
+    <input hidden name="ProjectId" value="@project.ProjectId" />
+    <input hidden name="ProjectPhaseId" value="@projectPhsae.ProjectPhaseId" />
+    <div class="form-group">
+        <label asp-for="@project.ProjectName"></label>
+        <input class="form-control" asp-for="@project.ProjectName" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="@projectPhsae.StratDate"></label>
+        <input class="form-control" asp-for="@projectPhsae.StratDate" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="@projectPhsae.EndDate"></label>
+        <input class="form-control" asp-for="@projectPhsae.EndDate" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="@projectPhsae.Phase"></label>
+        <input class="form-control" asp-for="@projectPhsae.Phase.PhaseName" disabled />
+    </div>
+    <div class="form-group">
+        <label>Enter Description of Deliverable</label>
+
+        <input class="form-control" asp-for="DeliverableDescription" />
+    </div>
+    <div class="form-group">
+        <label> Start Date</label>
+
+        <input  class="form-control" asp-for="StartDate" />
+    </div>
+    <div class="form-group">
+        <label> End Date</label>
+
+        <input  class="form-control" asp-for="EndtDate" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-action="Index">Back to List</a>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
